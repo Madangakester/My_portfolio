@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>[Your Name] | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #1f2937;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        #preloader.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #facc15;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Back-to-Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #facc15;
+            color: #1f2937;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 10;
+            cursor: pointer;
+        }
+        #back-to-top.visible {
+            opacity: 1;
+        }
+        /* Carousel */
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+        }
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-item {
+            min-width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-gradient-to-r from-blue-700 to-purple-600 text-white p-4 fixed w-full top-0 shadow-lg z-20">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <img src="image/ChatGPT Image Apr 24, 2025, 01_39_12 PM.png" alt="Logo" class="h-8 w-8 rounded-full shadow-md">
+                <h1 class="text-xl font-extrabold tracking-tight">Madanga Kester</h1>
+            </div>
+            <!-- Hamburger Icon -->
+            <button id="menu-toggle" class="md:hidden focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+            <!-- Desktop Menu -->
+            <ul id="nav-menu" class="hidden md:flex md:space-x-6 text-lg md:items-center">
+                <li><a href="#hero" class="hover:text-yellow-300 transition duration-300">Home</a></li>
+                <li><a href="#about" class="hover:text-yellow-300 transition duration-300">About</a></li>
+                <li><a href="#projects" class="hover:text-yellow-300 transition duration-300">Projects</a></li>
+                <li><a href="#skills" class="hover:text-yellow-300 transition duration-300">Skills</a></li>
+                <li><a href="#testimonials" class="hover:text-yellow-300 transition duration-300">Testimonials</a></li>
+                <li><a href="#blog" class="hover:text-yellow-300 transition duration-300">Blog</a></li>
+                <li><a href="#contact" class="hover:text-yellow-300 transition duration-300">Contact</a></li>
+            </ul>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 text-white w-full absolute top-16 left-0 flex flex-col items-center space-y-4 py-6 z-10">
+            <a href="#hero" class="text-lg hover:text-yellow-300 transition duration-300 py-2 w-full text-center">Home</a>
+            <a href="#about" class="text-lg hover:text-yellow-300 transition duration-300 py-2 w-full text-center">About</a>
+            <a href="#projects" class="text-lg hover:text-yellow-300 transition duration-300 py-2 w-full text-center">Projects</a>
+            <a href="#skills" class="text-lg hover:text-yellow-300 transition duration-300 py-2 w-full text-center">Skills</a>
+            <a href="#testimonials" class="text-lg hover:text-yellow-300 transition duration-300 py-2 w-full text-center">Testimonials</a>
+            <a href="#blog" class="text-lg hover:text-yellow-300 transition duration-300 py-2 w-full text-center">Blog</a>
+            <a href="#contact" class="text-lg hover:text-yellow-300 transition duration-300 py-2 w-full text-center">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-[80vh] flex items-center bg-gradient-to-b from-gray-900 to-blue-900">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4" data-aos="fade-up">Welcome to My Portfolio</h1>
+            <p class="text-lg sm:text-xl md:text-2xl mb-8 text-gray-300" data-aos="fade-up" data-aos-delay="200">
+                I'm Kester Madanga, a digital solutions creator, blending business logic, programming skills, and database management to turn ideas into functional, user-friendly systems.
+        
+            </p>
+            <a href="#about" class="bg-yellow-400 text-gray-900 px-6 py-2 rounded-full text-base sm:text-lg font-semibold hover:bg-yellow-500 transition duration-300" data-aos="fade-up" data-aos-delay="400">Discover My Work</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10" data-aos="fade-up">About Me</h2>
+            <div class="flex flex-col items-center space-y-6 max-w-3xl mx-auto">
+                <img src="image/20240731_131913819_single.jpg" alt="Profile Picture" class="w-32 h-32 rounded-full shadow-lg object-cover" data-aos="zoom-in">
+                <p class="text-base sm:text-lg text-gray-300 text-center" data-aos="fade-up" data-aos-delay="200">
+                    
+I'm a passionate Business IT Developer with deep expertise in crafting responsive, user-centric websites and applications that blend functionality with elegance. I specialize in turning complex ideas into seamless digital experiences through clean, efficient code and innovative design. My robust Business IT skills enable me to bridge technical development with strategic business objectives, optimizing processes, enhancing system integrations, and delivering solutions that drive organizational success. With a keen eye for detail and a commitment to staying at the forefront of technology trends, I thrive on solving challenges and delivering solutions that delight users and exceed expectations. My mission is to fuse creativity, technical precision, and business acumen, transforming visions into impactful realities that empower both users and enterprises.
+
+                
+                </p>
+                <a href="cv.pdf" download class="bg-blue-600 text-white px-6 py-2 rounded-full text-base sm:text-lg hover:bg-blue-700 transition duration-300" data-aos="fade-up" data-aos-delay="400">Download My CV <i class="fas fa-download ml-2"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10" data-aos="fade-up">My Projects</h2>
+            <div class="flex flex-wrap justify-center gap-4 mb-8" data-aos="fade-up" data-aos-delay="200">
+                <button class="filter-btn bg-blue-600 text-white px-4 py-2 rounded text-sm sm:text-base hover:bg-blue-700 transition" data-filter="all">All</button>
+                <button class="filter-btn bg-blue-600 text-white px-4 py-2 rounded text-sm sm:text-base hover:bg-blue-700 transition" data-filter="React">React</button>
+                <button class="filter-btn bg-blue-600 text-white px-4 py-2 rounded text-sm sm:text-base hover:bg-blue-700 transition" data-filter="Node.js">Node.js</button>
+                <button class="filter-btn bg-blue-600 text-white px-4 py-2 rounded text-sm sm:text-base hover:bg-blue-700 transition" data-filter="Next.js">Next.js</button>
+            </div>
+            <div class="grid grid-cols-1 gap-6">
+                <!-- Project 1 -->
+                <div class="project bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300" data-tags="React" data-aos="fade-up">
+                    <img src="https://via.placeholder.com/400x200" alt="Project 1" class="w-full h-40 sm:h-48 object-cover">
+                    <div class="p-4 sm:p-6">
+                        <h3 class="text-xl sm:text-2xl font-semibold mb-2">Project One</h3>
+                        <p class="text-gray-400 text-sm sm:text-base mb-4">A responsive e-commerce website built with React and Tailwind CSS.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-600 text-white text-xs sm:text-sm px-2 py-1 rounded">React</span>
+                            <span class="bg-blue-600 text-white text-xs sm:text-sm px-2 py-1 rounded">Tailwind</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0">
+                            <a href="https://project-one-demo.com" target="_blank" class="bg-yellow-400 text-gray-900 px-4 py-2 rounded text-sm sm:text-base hover:bg-yellow-500 transition">Live Demo</a>
+                            <a href="https://github.com/yourusername/project-one" target="_blank" class="bg-gray-600 text-white px-4 py-2 rounded text-sm sm:text-base hover:bg-gray-700 transition">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="project bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300" data-tags="Node.js" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://via.placeholder.com/400x200" alt="Project 2" class="w-full h-40 sm:h-48 object-cover">
+                    <div class="p-4 sm:p-6">
+                        <h3 class="text-xl sm:text-2xl font-semibold mb-2">Project Two</h3>
+                        <p class="text-gray-400 text-sm sm:text-base mb-4">A task management app developed with Node.js and MongoDB.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-600 text-white text-xs sm:text-sm px-2 py-1 rounded">Node.js</span>
+                            <span class="bg-blue-600 text-white text-xs sm:text-sm px-2 py-1 rounded">MongoDB</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0">
+                            <a href="https://project-two-demo.com" target="_blank" class="bg-yellow-400 text-gray-900 px-4 py-2 rounded text-sm sm:text-base hover:bg-yellow-500 transition">Live Demo</a>
+                            <a href="https://github.com/yourusername/project-two" target="_blank" class="bg-gray-600 text-white px-4 py-2 rounded text-sm sm:text-base hover:bg-gray-700 transition">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="project bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300" data-tags="Next.js" data-aos="fade-up" data-aos-delay="400">
+                    <img src="https://via.placeholder.com/400x200" alt="Project 3" class="w-full h-40 sm:h-48 object-cover">
+                    <div class="p-4 sm:p-6">
+                        <h3 class="text-xl sm:text-2xl font-semibold mb-2">Project Three</h3>
+                        <p class="text-gray-400 text-sm sm:text-base mb-4">A personal blog built with Next.js and Markdown.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-600 text-white text-xs sm:text-sm px-2 py-1 rounded">Next.js</span>
+                            <span class="bg-blue-600 text-white text-xs sm:text-sm px-2 py-1 rounded">Markdown</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0">
+                            <a href="https://project-three-demo.com" target="_blank" class="bg-yellow-400 text-gray-900 px-4 py-2 rounded text-sm sm:text-base hover:bg-yellow-500 transition">Live Demo</a>
+                            <a href="https://github.com/yourusername/project-three" target="_blank" class="bg-gray-600 text-white px-4 py-2 rounded text-sm sm:text-base hover:bg-gray-700 transition">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10" data-aos="fade-up">My Skills</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
+                <div class="flex flex-col items-center" data-aos="zoom-in">
+                    <i class="fab fa-html5 fa-3x text-blue-600 mb-2"></i>
+                    <p class="text-base sm:text-lg">HTML</p>
+                </div>
+                <div class="flex flex-col items-center" data-aos="zoom-in" data-aos-delay="100">
+                    <i class="fab fa-css3-alt fa-3x text-blue-600 mb-2"></i>
+                    <p class="text-base sm:text-lg">CSS</p>
+                </div>
+                <div class="flex flex-col items-center" data-aos="zoom-in" data-aos-delay="200">
+                    <i class="fab fa-js fa-3x text-blue-600 mb-2"></i>
+                    <p class="text-base sm:text-lg">JavaScript</p>
+                </div>
+                <div class="flex flex-col items-center" data-aos="zoom-in" data-aos-delay="300">
+                    <i class="fab fa-react fa-3x text-blue-600 mb-2"></i>
+                    <p class="text-base sm:text-lg">React</p>
+                </div>
+                <div class="flex flex-col items-center" data-aos="zoom-in" data-aos-delay="400">
+                    <i class="fab fa-node-js fa-3x text-blue-600 mb-2"></i>
+                    <p class="text-base sm:text-lg">Node.js</p>
+                </div>
+                <div class="flex flex-col items-center" data-aos="zoom-in" data-aos-delay="500">
+                    <i class="fab fa-python fa-3x text-blue-600 mb-2"></i>
+                    <p class="text-base sm:text-lg">Python</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10" data-aos="fade-up">Testimonials</h2>
+            <div class="carousel-container max-w-2xl mx-auto">
+                <div class="carousel flex">
+                    <div class="carousel-item text-center px-4" data-aos="fade-up">
+                        <p class="text-base sm:text-lg text-gray-300 mb-4">"Kester delivered an outstanding website that exceeded our expectations. Highly professional!"</p>
+                        <p class="font-semibold">Chris Mulwa, CEO of TechCorp</p>
+                    </div>
+                    <div class="carousel-item text-center px-4" data-aos="fade-up">
+                        <p class="text-base sm:text-lg text-gray-300 mb-4">"Working with Kester Madanga was a pleasure. Their attention to detail is unmatched."</p>
+                        <p class="font-semibold">Jane Smith, Project Manager</p>
+                    </div>
+                    <div class="carousel-item text-center px-4" data-aos="fade-up">
+                        <p class="text-base sm:text-lg text-gray-300 mb-4">"The app developed by Kester Madanga transformed our workflow. Highly recommend!"</p>
+                        <p class="font-semibold">Sarah Kirika, Startup Founder</p>
+                    </div>
+                </div>
+                <div class="flex justify-center space-x-4 mt-6">
+                    <button id="prev-slide" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"><i class="fas fa-chevron-left"></i></button>
+                    <button id="next-slide" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Preview Section -->
+    <section id="blog" class="py-16 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10" data-aos="fade-up">Recent Blog Posts</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <div class="bg-gray-900 rounded-lg shadow-lg p-4" data-aos="fade-up">
+                    <h3 class="text-xl sm:text-2xl font-semibold mb-2">Building a Scalable Web App</h3>
+                    <p class="text-gray-400 text-sm sm:text-base mb-4">Learn how to architect a scalable web application using modern frameworks.</p>
+                    <a href="#" class="text-yellow-400 hover:text-yellow-500 text-sm sm:text-base">Read More</a>
+                </div>
+                <div class="bg-gray-900 rounded-lg shadow-lg p-4" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-xl sm:text-2xl font-semibold mb-2">Mastering Tailwind CSS</h3>
+                    <p class="text-gray-400 text-sm sm:text-base mb-4">Tips and tricks to create stunning designs with Tailwind CSS.</p>
+                    <a href="#" class="text-yellow-400 hover:text-yellow-500 text-sm sm:text-base">Read More</a>
+                </div>
+            </div>
+            <div class="text-center mt-8" data-aos="fade-up" data-aos-delay="400">
+                <a href="#" class="bg-blue-600 text-white px-6 py-2 rounded-full text-base sm:text-lg hover:bg-blue-700 transition">View All Posts</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10" data-aos="fade-up">Get in Touch</h2>
+            <div class="max-w-md mx-auto text-center">
+                <p class="text-base sm:text-lg text-gray-300 mb-6" data-aos="fade-up" data-aos-delay="200">
+                    Let's create something amazing together! Reach out via email or the form below.
+                </p>
+                <p class="mb-6" data-aos="fade-up" data-aos-delay="400">
+                    <a href="mailto:madangakester@gmail.com" class="text-yellow-400 hover:text-yellow-500 transition duration-300 text-sm sm:text-base">madangakester@gmail.com</a>
+                </p>
+                <form id="contact-form" class="space-y-4" data-aos="fade-up" data-aos-delay="600">
+                    <input type="text" id="name" placeholder="Your Name" class="w-full p-3 rounded bg-gray-800 text-white border border-gray-600 focus:outline-none focus:border-yellow-400 text-sm sm:text-base">
+                    <input type="email" id="email" placeholder="Your Email" class="w-full p-3 rounded bg-gray-800 text-white border border-gray-600 focus:outline-none focus:border-yellow-400 text-sm sm:text-base">
+                    <textarea id="message" placeholder="Your Message" rows="4" class="w-full p-3 rounded bg-gray-800 text-white border border-gray-600 focus:outline-none focus:border-yellow-400 text-sm sm:text-base"></textarea>
+                    <button type="submit" class="bg-yellow-400 text-gray-900 px-6 py-2 rounded-full text-base sm:text-lg hover:bg-yellow-500 transition w-full">Send Message</button>
+                </form>
+                <div class="flex justify-center space-x-6 mt-6" data-aos="fade-up" data-aos-delay="800">
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank" class="text-gray-300 hover:text-yellow-400 transition duration-300">
+                        <i class="fab fa-linkedin fa-2x"></i>
+                    </a>
+                    <a href="https://github.com/yourusername" target="_blank" class="text-gray-300 hover:text-yellow-400 transition duration-300">
+                        <i class="fab fa-github fa-2x"></i>
+                    </a>
+                    <a href="https://twitter.com/yourusername" target="_blank" class="text-gray-300 hover:text-yellow-400 transition duration-300">
+                        <i class="fab fa-twitter fa-2x"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-blue-700 to-purple-600 text-white p-4 sm:p-6 text-center">
+        <p class="text-sm sm:text-base">© 2025 MadangaKester. All rights reserved.</p>
+        <div class="flex justify-center space-x-4 sm:space-x-6 mt-2 sm:mt-4">
+            <a href="https://linkedin.com/in/yourprofile" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fab fa-linkedin fa-lg"></i></a>
+            <a href="https://github.com/yourusername" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fab fa-github fa-lg"></i></a>
+            <a href="https://twitter.com/yourusername" target="_blank" class="text-gray-300 hover:text-yellow-400 transition"><i class="fab fa-twitter fa-lg"></i></a>
+        </div>
+    </footer>
+
+    <!-- Back-to-Top Button -->
+    <a href="#hero" id="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            disable: window.innerWidth < 768
+        });
+
+        // Preloader
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                preloader.classList.add('hide');
+                setTimeout(() => preloader.remove(), 500);
+            }
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Hamburger Menu Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+
+        // Back-to-Top Button
+        const backToTop = document.getElementById('back-to-top');
+        if (backToTop) {
+            window.addEventListener('scroll', () => {
+                backToTop.classList.toggle('visible', window.scrollY > 300);
+            });
+            backToTop.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // Project Filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projects = document.querySelectorAll('.project');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter');
+                projects.forEach(project => {
+                    const tags = project.getAttribute('data-tags');
+                    project.style.display = filter === 'all' || tags.includes(filter) ? 'block' : 'none';
+                });
+                filterButtons.forEach(btn => btn.classList.remove('bg-blue-700'));
+                button.classList.add('bg-blue-700');
+            });
+        });
+
+        // Carousel
+        const carousel = document.querySelector('.carousel');
+        const items = document.querySelectorAll('.carousel-item');
+        const prevSlide = document.getElementById('prev-slide');
+        const nextSlide = document.getElementById('next-slide');
+        let currentIndex = 0;
+        function updateCarousel() {
+            if (carousel) {
+                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+        }
+        if (prevSlide && nextSlide) {
+            prevSlide.addEventListener('click', () => {
+                currentIndex = (currentIndex === 0) ? items.length - 1 : currentIndex - 1;
+                updateCarousel();
+            });
+            nextSlide.addEventListener('click', () => {
+                currentIndex = (currentIndex === items.length - 1) ? 0 : currentIndex + 1;
+                updateCarousel();
+            });
+        }
+
+        // Contact Form Validation
+        const form = document.getElementById('contact-form');
+        if (form) {
+            form.addEventListener('submit', e => {
+                e.preventDefault();
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const message = document.getElementById('message').value.trim();
+                if (name && email.includes('@') && message) {
+                    alert('Message sent successfully!'); // Replace with actual form submission logic
+                    form.reset();
+                } else {
+                    alert('Please fill in all fields correctly.');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
